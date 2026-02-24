@@ -22,7 +22,8 @@ async function main(): Promise<void> {
 
   const server = createHttpServer({
     config: appConfig,
-    db
+    db,
+    polisher
   });
   const backupScheduler = startBackupScheduler({ bot, db });
 
