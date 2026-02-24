@@ -1,4 +1,4 @@
-:8080 {
+q.kzim.ru {
   encode gzip zstd
   reverse_proxy app:3000
 }
