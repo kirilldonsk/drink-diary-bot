@@ -12,6 +12,8 @@ services:
       DB_PATH: /data/drinks.sqlite
     volumes:
       - drink_data:/data
+    ports:
+      - "127.0.0.1:3001:3000"
     expose:
       - "3000"
 
