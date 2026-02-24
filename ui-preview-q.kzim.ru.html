@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>q.kzim.ru — Медовуха / Preview</title>
+  <style>
+    :root {
+      --bg0: #f7fbff;
+      --bg1: #eef4fb;
+      --bg2: #e6eef8;
+      --card: #fcfeff;
+      --ink: #10243a;
+      --muted: #58718d;
+      --line: #d5e3f2;
+      --accent: #2f6ea8;
+      --shadow: 0 18px 36px rgba(17, 45, 74, 0.09);
+      --radius: 22px;
+      --ease: cubic-bezier(.22, .61, .36, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100dvh;
+      font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background-color: var(--bg1);
+      background:
+        radial-gradient(circle at 8% 8%, #ffffff 0%, rgba(255,255,255,0) 44%),
+        radial-gradient(circle at 92% 14%, #e8f2ff 0%, rgba(232,242,255,0) 44%),
+        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 44%, var(--bg2) 100%);
+      background-repeat: no-repeat, no-repeat, no-repeat;
+      background-size: 140% 62%, 140% 62%, 100% 100%;
+      overflow-x: hidden;
+    }
+
+    .page {
+      width: min(1240px, calc(100% - 36px));
+      margin: 24px auto 40px;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: color-mix(in oklab, var(--card), white 30%);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(20px) scale(.985);
+      animation: rise 760ms var(--ease) forwards;
+      animation-delay: var(--delay, 0ms);
+    }
+
+    @keyframes rise { to { opacity: 1; transform: translateY(0) scale(1); } }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 11px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font: 600 11px/1 "IBM Plex Mono", ui-monospace, monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    h1, h2, h3 { margin: 0; }
+
+    .hero {
+      grid-column: span 7;
+      min-height: 280px;
+      display: grid;
+      align-content: space-between;
+      background: linear-gradient(125deg, #ffffff 0%, #f0f7ff 100%);
+    }
+
+    .title {
+      margin-top: 12px;
+      font-size: clamp(36px, 4.8vw, 64px);
+      line-height: .92;
+      letter-spacing: -0.03em;
+    }
+
+    .meta {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .meta-item {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 9px 10px;
+      font: 500 12px/1.25 "IBM Plex Mono", ui-monospace, monospace;
+      color: #26445f;
+    }
+
+    .signature {
+      grid-column: span 5;
+      min-height: 280px;
+      display: grid;
+      align-content: space-between;
+      gap: 14px;
+      background: linear-gradient(165deg, #f8fcff 0%, #f0f7ff 52%, #f8f6ff 100%);
+    }
+
+    .signature-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 42ch;
+    }
+
+    .signature-box {
+      min-height: 124px;
+      border-radius: 16px;
+      border: 1px solid #cfe0f1;
+      background: #ffffff;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+
+    .signature-svg { width: min(100%, 300px); height: auto; }
+    .signature-fallback[hidden] { display: none; }
+
+    .gift {
+      grid-column: span 12;
+      min-height: 190px;
+      background: linear-gradient(165deg, #f7fcff 0%, #edf5ff 100%);
+    }
+
+    .gift-grid {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .gift-item {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 10px;
+      font-size: 13px;
+      color: #31506f;
+      line-height: 1.35;
+    }
+
+    .improved-text {
+      margin-top: 12px;
+      border-radius: 14px;
+      border: 1px dashed #c8daee;
+      background: #ffffff;
+      padding: 14px;
+      font-size: 14px;
+      color: #1a3550;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid #2f5f8a;
+      background: linear-gradient(180deg, #4f81b1, #325f88);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 10px 20px rgba(50,95,136,.24);
+      transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
+      width: fit-content;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(50,95,136,.3);
+    }
+
+    .parallax {
+      transform: translate3d(var(--mx, 0), var(--my, 0), 0);
+      transition: transform 300ms var(--ease);
+    }
+
+    @media (max-width: 1024px) {
+      .hero, .signature, .gift { grid-column: span 12; }
+      .gift-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .page { width: calc(100% - 18px); margin-top: 14px; gap: 10px; }
+      .card { border-radius: 16px; padding: 16px; }
+      .meta { grid-template-columns: 1fr; }
+      .gift-grid { grid-template-columns: 1fr; }
+      .title { font-size: clamp(32px, 12vw, 46px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card, .button, .parallax {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="card hero parallax" style="--delay: 20ms">
+      <div>
+        <h1 class="title">Медовуха</h1>
+        <div class="improved-text">Смешать 1.3 кг меда с 4.3 л горячей воды до полного растворения. Упарить сусло на 700 мл, затем охладить до рабочей температуры и внести 1.8 г дрожжей.
+
+31.01.2026 в 23:58 поставить на брожение.
+
+22.03.2026 снять с осадка и перелить в емкость №2 для повторного брожения. Текущая дегустация: медовая часть отделена от спиртовой, вкус сладкий.</div>
+      </div>
+      <div class="meta">
+        <div class="meta-item">Мед: 1.3 кг</div>
+        <div class="meta-item">Вода (горячая): 4.3 л</div>
+        <div class="meta-item">Дрожжи: 1.8 г</div>
+      </div>
+    </section>
+
+    <aside class="card signature parallax" style="--delay: 80ms">
+      <div>
+        <div class="meta" style="margin-top:12px;">
+          <div class="meta-item">Объем бутылки: 0.75 л</div>
+          <div class="meta-item">Крепость: 11.5%</div>
+        </div>
+      </div>
+      <div class="signature-box">
+        <img class="signature-svg" src="./signature.svg" alt="Ваша подпись" onerror="window.showSignatureFallback?.()" />
+        <svg id="signatureFallback" class="signature-svg signature-fallback" viewBox="0 0 500 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Signature placeholder" hidden>
+          <path d="M20 92C44 31 61 123 80 92C98 60 98 65 114 96C122 113 124 64 144 55C159 48 166 95 184 98C202 101 207 69 224 57C250 39 259 117 284 95C305 76 315 51 333 59C355 69 364 109 390 94C416 79 429 55 470 45" stroke="#2E5E87" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </aside>
+
+    <section class="card gift" style="--delay: 120ms">
+      <div class="gift-grid">
+        <div class="gift-item"><strong>Получатель:</strong><br />Алексей Петров</div>
+        <div class="gift-item"><strong>Номер бутылки:</strong><br />MEAD-GIFT-024</div>
+        <div class="gift-item"><strong>Номер партии:</strong><br />BATCH-2026-03</div>
+        <div class="gift-item"><strong>Сообщение:</strong><br />С теплом и уважением. Пусть эта партия запомнится.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const cards = Array.from(document.querySelectorAll('.parallax'));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    window.showSignatureFallback = () => {
+      const fallback = document.getElementById('signatureFallback');
+      if (fallback) fallback.hidden = false;
+    };
+
+    if (!reduce) {
+      window.addEventListener('pointermove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 10;
+        const y = (e.clientY / window.innerHeight - 0.5) * 8;
+        cards.forEach((el, i) => {
+          const f = (i + 1) * 0.24;
+          el.style.setProperty('--mx', `${(-x * f).toFixed(2)}px`);
+          el.style.setProperty('--my', `${(-y * f).toFixed(2)}px`);
+        });
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>
