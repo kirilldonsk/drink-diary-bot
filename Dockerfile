@@ -22,6 +22,7 @@ RUN useradd --create-home --uid 10001 appuser
 COPY package.json package-lock.json ./
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
+COPY signature.svg ./signature.svg
 
 RUN mkdir -p /data && chown -R appuser:appuser /app /data
 
